@@ -23,23 +23,20 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
-    return _buildSignIn();
-  }
-
-  /// Build Sign In Screen
-  Widget _buildSignIn() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _buildHeader(),
-        SizedBox(height: 10),
-        _buildPhoneInput(),
-        SizedBox(height: 10),
-        _buildPasswordInput(),
-        SizedBox(height: 20),
-        _buildSignInButton(),
-        _buildSwitchToSignUp(),
-      ],
+    return Scaffold(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildHeader(),
+          SizedBox(height: 10),
+          _buildPhoneInput(),
+          SizedBox(height: 10),
+          _buildPasswordInput(),
+          SizedBox(height: 20),
+          _buildSignInButton(),
+          _buildSwitchToSignUp(),
+        ],
+      ),
     );
   }
 
