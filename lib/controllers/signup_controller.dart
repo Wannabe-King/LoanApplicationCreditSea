@@ -5,12 +5,9 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
-enum SignUpScreen {
-  phone,
-  password,
-  otp,
-}
+enum SignUpScreen { phone, password, otp }
 
 class SignupController extends GetxController {
   var currentScreen = SignUpScreen.phone.obs;
@@ -28,10 +25,10 @@ class SignupController extends GetxController {
   void sendOtp(BuildContext context) {
     otp.value = generateOtp();
     showCustomDialog(
-        context: context,
-        title: "OTP Verification",
-        description:
-            "Your OTP for number ${phoneNumber.value} is ${otp.value}");
+      context: context,
+      title: "OTP Verification",
+      description: "Your OTP for number ${phoneNumber.value} is ${otp.value}",
+    );
     switchScreen(SignUpScreen.otp);
   }
 
@@ -45,34 +42,41 @@ class SignupController extends GetxController {
     if (enteredOTP == otp.value) {
       switchScreen(SignUpScreen.password);
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Please enter the correct otp.")));
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text("Please enter the correct otp.")));
     }
   }
 
   Future<bool> signUpUser(BuildContext context) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
     try {
       final response = await http.post(
-        Uri.parse(
-            'https://credit-sea-assignment-flutter-backend.onrender.com/api/auth/signup'),
+        Uri.parse('https://creditseabackend-170m.onrender.com/api/auth/signup'),
         headers: {'Content-Type': 'application/json'},
-        body: jsonEncode(
-            {'phoneNumber': phoneNumber.value, 'password': password.value}),
+        body: jsonEncode({
+          'phoneNumber': phoneNumber.value,
+          'password': password.value,
+        }),
       );
       if (response.statusCode == 201) {
         final data = jsonDecode(response.body);
         String token = data['token'];
+        prefs.setString('auth_token', token);
+        prefs.setString('phone', '+91${phoneNumber.value}');
         await _storage.write('auth_token', token);
         print('Signup successful! Token: $token');
         return true;
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Signup failed: ${response.body}')));
+          SnackBar(content: Text('Signup failed: ${response.body}')),
+        );
         return false;
       }
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text("Error occured while signup: ${e.toString()}")));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Error occured while signup: ${e.toString()}")),
+      );
       return false;
     }
   }

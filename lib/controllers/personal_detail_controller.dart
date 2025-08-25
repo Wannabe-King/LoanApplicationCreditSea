@@ -72,7 +72,7 @@ class PersonalDetailController extends GetxController {
     print(phone);
     var token = _storage.read('auth_token');
     print(token);
-    final url = Uri.parse('https://credit-sea-assignment-flutter-backend.onrender.com/api/auth/update/$phone');
+    final url = Uri.parse('https://creditseabackend-170m.onrender.com/api/auth/update/$phone');
 
     try {
       final response = await http.put(

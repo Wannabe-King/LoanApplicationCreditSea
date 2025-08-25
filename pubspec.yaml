@@ -40,6 +40,7 @@ dependencies:
   widgets_easier: ^0.0.10
   get: ^4.7.2
   get_storage: ^2.0.3
+  shared_preferences: ^2.5.3
   http:
 
 dev_dependencies:

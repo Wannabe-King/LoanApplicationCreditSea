@@ -1,4 +1,5 @@
 import 'package:client_app/config/color.dart';
+import 'package:client_app/view/pages/dashboard_page.dart';
 import 'package:client_app/view/widget/custombutton.dart';
 import 'package:client_app/view/widget/progress_container.dart';
 import 'package:client_app/view/widget/status_tile.dart';
@@ -15,11 +16,7 @@ class _ApplicationStatusState extends State<ApplicationStatus> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: ProgressContainer(
-          selectedIndex: 3,
-        ),
-      ),
+      appBar: AppBar(title: ProgressContainer(selectedIndex: 3)),
       body: SafeArea(
         child: Container(
           margin: EdgeInsets.only(top: 5),
@@ -27,14 +24,16 @@ class _ApplicationStatusState extends State<ApplicationStatus> {
           decoration: BoxDecoration(
             color: ColorX.white,
             borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(25), topRight: Radius.circular(25)),
+              topLeft: Radius.circular(25),
+              topRight: Radius.circular(25),
+            ),
             boxShadow: [
               BoxShadow(
                 color: Colors.grey.shade300,
                 spreadRadius: 1,
                 blurRadius: 10,
                 offset: const Offset(0, -5),
-              )
+              ),
             ],
           ),
           child: Column(
@@ -42,21 +41,19 @@ class _ApplicationStatusState extends State<ApplicationStatus> {
               Row(
                 children: [
                   Icon(Icons.arrow_back),
-                  SizedBox(
-                    width: 20,
-                  ),
+                  SizedBox(width: 20),
                   Text(
                     "Application Status",
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
-                  )
+                  ),
                 ],
               ),
               Row(
                 children: [
                   RichText(
-                      text: TextSpan(
-                          style: TextStyle(fontSize: 15, color: Colors.black),
-                          children: [
+                    text: TextSpan(
+                      style: TextStyle(fontSize: 15, color: Colors.black),
+                      children: [
                         TextSpan(
                           text: "Loan application no.",
                           style: TextStyle(fontSize: 15),
@@ -64,56 +61,42 @@ class _ApplicationStatusState extends State<ApplicationStatus> {
                         TextSpan(
                           text: "#CS12323",
                           style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.w500),
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
-                      ])),
+                      ],
+                    ),
+                  ),
                 ],
               ),
-              SizedBox(
-                height: 20,
-              ),
-              StatusTile(
-                status: "Application Submitted",
-                done: true,
-              ),
-              SizedBox(
-                height: 20,
-              ),
+              SizedBox(height: 20),
+              StatusTile(status: "Application Submitted", done: true),
+              SizedBox(height: 20),
               StatusTile(
                 status: "Application under Review",
                 done: false,
                 color: ColorX.buttonBlue,
               ),
-              SizedBox(
-                height: 20,
-              ),
-              StatusTile(
-                status: "E-KYC",
-                done: false,
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              StatusTile(
-                status: "E-Nach",
-                done: false,
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              StatusTile(
-                status: "E-Sign",
-                done: false,
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              StatusTile(
-                status: "Disbursement",
-                done: false,
-              ),
+              SizedBox(height: 20),
+              StatusTile(status: "E-KYC", done: false),
+              SizedBox(height: 20),
+              StatusTile(status: "E-Nach", done: false),
+              SizedBox(height: 20),
+              StatusTile(status: "E-Sign", done: false),
+              SizedBox(height: 20),
+              StatusTile(status: "Disbursement", done: false),
               Spacer(),
-              CustomButton(buttonText: "Continue", disabled: true)
+              CustomButton(
+                buttonText: "Continue",
+                disabled: true,
+                onTap: () {
+                  Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (context) => DashboardPage()),
+                    (Route<dynamic> route) => false,
+                  );
+                },
+              ),
             ],
           ),
         ),

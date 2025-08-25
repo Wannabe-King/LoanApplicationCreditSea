@@ -17,7 +17,7 @@ class LoanController extends GetxController {
   Future<void> registerLoan(BuildContext context) async {
     totalAmount =
         principalAmount + (principalAmount.value * 0.01 * tenure.value).toInt();
-    final url = Uri.parse('https://credit-sea-assignment-flutter-backend.onrender.com/api/loan/create');
+    final url = Uri.parse('https://creditseabackend-170m.onrender.com/api/loan/create');
 
     try {
       final response = await http.post(

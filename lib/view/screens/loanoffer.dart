@@ -15,15 +15,18 @@ class LoanOffer extends StatefulWidget {
 }
 
 class _LoanOfferState extends State<LoanOffer> {
-  final LoanController loanController = Get.find<LoanController>();
+  // final PersonalDetailController personalDetailController = Get.put(
+  //   PersonalDetailController(),
+  //   permanent: true,
+  // );
+  final LoanController loanController = Get.put(
+    LoanController(),
+    permanent: true,
+  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: ProgressContainer(
-          selectedIndex: 2,
-        ),
-      ),
+      appBar: AppBar(title: ProgressContainer(selectedIndex: 2)),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 50, horizontal: 16),
         child: Column(
@@ -37,10 +40,7 @@ class _LoanOfferState extends State<LoanOffer> {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 80),
-                    child: Image.asset(
-                      Assets.dollar,
-                      scale: 5,
-                    ),
+                    child: Image.asset(Assets.dollar, scale: 5),
                   ),
                   SizedBox(
                     width: 300,
@@ -93,9 +93,7 @@ class _LoanOfferState extends State<LoanOffer> {
                 createLoan();
               },
             ),
-            SizedBox(
-              height: 20,
-            ),
+            SizedBox(height: 20),
             CustomButton(
               buttonText: "Extend Offer",
               disabled: true,
@@ -109,7 +107,8 @@ class _LoanOfferState extends State<LoanOffer> {
 
   void createLoan() async {
     await loanController.registerLoan(context);
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => ApplicationStatus()));
+    Navigator.of(
+      context,
+    ).pushReplacement(MaterialPageRoute(builder: (context) => ApplicationStatus()));
   }
 }
