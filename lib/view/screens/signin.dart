@@ -9,9 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SignIn extends StatefulWidget {
-  const SignIn({
-    super.key,
-  });
+  const SignIn({super.key});
 
   @override
   State<SignIn> createState() => _SignInState();
@@ -32,9 +30,7 @@ class _SignInState extends State<SignIn> {
           'Please enter your credentials',
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
         ),
-        SizedBox(
-          height: 10,
-        ),
+        SizedBox(height: 10),
         CustomInputContainer(
           inputTitle: "Mobile Number",
           inputWidget: CustomPhoneWidget(
@@ -46,16 +42,15 @@ class _SignInState extends State<SignIn> {
         ),
 
         CustomInputContainer(
-            inputTitle: "Enter password",
-            inputWidget: CustomInputField(
-              controller: passwordController,
-              hintText: "Enter password",
-              password: true,
-            )),
-
-        SizedBox(
-          height: 20,
+          inputTitle: "Enter password",
+          inputWidget: CustomInputField(
+            controller: passwordController,
+            hintText: "Enter password",
+            password: true,
+          ),
         ),
+
+        SizedBox(height: 20),
         CustomButton(
           buttonText: "Sign In",
           disabled: true,
@@ -73,9 +68,10 @@ class _SignInState extends State<SignIn> {
               child: Text(
                 "New to CreditSea? Create an account",
                 style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: ColorX.backgroundBlue),
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: ColorX.backgroundBlue,
+                ),
               ),
             ),
           ),
