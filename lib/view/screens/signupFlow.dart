@@ -1,7 +1,6 @@
 import 'package:client_app/config/color.dart';
 import 'package:client_app/controllers/auth_controller.dart';
 import 'package:client_app/controllers/signup_controller.dart';
-import 'package:client_app/view/screens/signin.dart';
 import 'package:client_app/view/widget/custom_input_container.dart';
 import 'package:client_app/view/widget/custom_input_field.dart';
 import 'package:client_app/view/widget/custom_phone_input.dart';
@@ -261,11 +260,11 @@ class _SignUpFlowState extends State<SignUpFlow> {
     var success = await signupController.signUpUser(context);
     if (success == true) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Registration Successful. Please Sing In.")),
+        SnackBar(
+          content: Text("Registration Successful. Please signIn to continue."),
+        ),
       );
-      Navigator.of(
-        context,
-      ).pushReplacement(MaterialPageRoute(builder: (context) => SignIn()));
+      authType.alterAuthenticationType();
       setState(() {
         agree = !agree;
       });
