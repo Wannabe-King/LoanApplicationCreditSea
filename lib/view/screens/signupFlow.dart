@@ -1,7 +1,6 @@
 import 'package:client_app/config/color.dart';
 import 'package:client_app/controllers/auth_controller.dart';
 import 'package:client_app/controllers/signup_controller.dart';
-import 'package:client_app/view/screens/personal_details.dart';
 import 'package:client_app/view/screens/signin.dart';
 import 'package:client_app/view/widget/custom_input_container.dart';
 import 'package:client_app/view/widget/custom_input_field.dart';

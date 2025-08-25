@@ -1,7 +1,6 @@
 import 'package:client_app/config/assets.dart';
 import 'package:client_app/controllers/personal_detail_controller.dart';
 import 'package:client_app/view/pages/dashboard_page.dart';
-import 'package:client_app/view/screens/applyforloan.dart';
 import 'package:client_app/view/widget/custom_input_container.dart';
 import 'package:client_app/view/widget/custom_input_field.dart';
 import 'package:client_app/view/widget/custombutton.dart';
