@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:client_app/models/user.dart';
 import 'package:client_app/view/pages/dashboard_page.dart';
 import 'package:client_app/view/screens/personal_details.dart';
 import 'package:flutter/material.dart';
@@ -24,10 +25,17 @@ class SigninController extends GetxController {
           'password': password.value,
         }),
       );
-      print("signup called");
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         String token = data['token'];
+        final user = User.fromJson(data['user']);
+        if (user.pan == null || user.pan == '') {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => PersonalDetail()),
+          );
+          return;
+        }
+
         prefs.setString('auth_token', token);
         prefs.setString('phone', '+91${phone.value}');
         await _storage.write('auth_token', token);

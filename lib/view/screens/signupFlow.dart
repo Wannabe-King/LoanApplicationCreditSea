@@ -1,6 +1,8 @@
 import 'package:client_app/config/color.dart';
 import 'package:client_app/controllers/auth_controller.dart';
 import 'package:client_app/controllers/signup_controller.dart';
+import 'package:client_app/view/screens/personal_details.dart';
+import 'package:client_app/view/screens/signin.dart';
 import 'package:client_app/view/widget/custom_input_container.dart';
 import 'package:client_app/view/widget/custom_input_field.dart';
 import 'package:client_app/view/widget/custom_phone_input.dart';
@@ -9,9 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SignUpFlow extends StatefulWidget {
-  const SignUpFlow({
-    super.key,
-  });
+  const SignUpFlow({super.key});
 
   @override
   State<SignUpFlow> createState() => _SignUpFlowState();
@@ -21,16 +21,16 @@ class _SignUpFlowState extends State<SignUpFlow> {
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController reenterController = TextEditingController();
-  final List<TextEditingController> _otpControllers =
-      List.generate(4, (_) => TextEditingController());
+  final List<TextEditingController> _otpControllers = List.generate(
+    4,
+    (_) => TextEditingController(),
+  );
   final SignupController signupController = Get.put(SignupController());
   final AuthType authType = Get.find<AuthType>();
   bool agree = false;
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => _buildCurrentScreen(signupController.currentScreen.value),
-    );
+    return Obx(() => _buildCurrentScreen(signupController.currentScreen.value));
   }
 
   Widget _buildCurrentScreen(SignUpScreen screen) {
@@ -56,9 +56,7 @@ class _SignUpFlowState extends State<SignUpFlow> {
             ),
           ],
         ),
-        SizedBox(
-          height: 10,
-        ),
+        SizedBox(height: 10),
         Text(
           "Verify OTP, Sent on ${signupController.phoneNumber.value}",
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
@@ -103,14 +101,13 @@ class _SignUpFlowState extends State<SignUpFlow> {
           "00:20",
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
         ),
-        SizedBox(
-          height: 50,
-        ),
+        SizedBox(height: 50),
         CustomButton(
           buttonText: "Verify",
           disabled: true,
           onTap: () {
-            var enteredOTP = _otpControllers[0].text +
+            var enteredOTP =
+                _otpControllers[0].text +
                 _otpControllers[1].text +
                 _otpControllers[2].text +
                 _otpControllers[3].text;
@@ -129,9 +126,7 @@ class _SignUpFlowState extends State<SignUpFlow> {
           'Welcome to Credit Sea!',
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
         ),
-        SizedBox(
-          height: 10,
-        ),
+        SizedBox(height: 10),
         CustomInputContainer(
           inputTitle: "Mobile Number",
           inputWidget: CustomPhoneWidget(
@@ -163,7 +158,7 @@ class _SignUpFlowState extends State<SignUpFlow> {
                   "By continuing, you agree to our privacy policies and Terms & Conditions.",
                   style: TextStyle(fontSize: 15),
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -175,7 +170,8 @@ class _SignUpFlowState extends State<SignUpFlow> {
               signupController.sendOtp(context);
             } else {
               ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text("Please Enter a valid number")));
+                SnackBar(content: Text("Please Enter a valid number")),
+              );
             }
           },
         ),
@@ -189,9 +185,10 @@ class _SignUpFlowState extends State<SignUpFlow> {
               child: Text(
                 "Existing User? Sign in",
                 style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: ColorX.backgroundBlue),
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: ColorX.backgroundBlue,
+                ),
               ),
             ),
           ),
@@ -208,29 +205,25 @@ class _SignUpFlowState extends State<SignUpFlow> {
           'Create a password',
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
         ),
-        SizedBox(
-          height: 10,
-        ),
+        SizedBox(height: 10),
         CustomInputContainer(
-            inputTitle: "Enter password",
-            inputWidget: CustomInputField(
-              controller: passwordController,
-              hintText: "Enter password",
-              password: true,
-            )),
-        SizedBox(
-          height: 10,
+          inputTitle: "Enter password",
+          inputWidget: CustomInputField(
+            controller: passwordController,
+            hintText: "Enter password",
+            password: true,
+          ),
         ),
+        SizedBox(height: 10),
         CustomInputContainer(
-            inputTitle: "Re enter password",
-            inputWidget: CustomInputField(
-              controller: reenterController,
-              hintText: "Re enter password",
-              password: true,
-            )),
-        SizedBox(
-          height: 10,
+          inputTitle: "Re enter password",
+          inputWidget: CustomInputField(
+            controller: reenterController,
+            hintText: "Re enter password",
+            password: true,
+          ),
         ),
+        SizedBox(height: 10),
         SizedBox(
           width: MediaQuery.of(context).size.width,
           child: Text(
@@ -238,20 +231,22 @@ class _SignUpFlowState extends State<SignUpFlow> {
             style: TextStyle(fontSize: 15),
           ),
         ),
-        SizedBox(
-          height: 20,
-        ),
+        SizedBox(height: 20),
         CustomButton(
           buttonText: "Proceed",
           disabled: true,
           onTap: () {
             if (passwordController.text.length < 6) {
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: Text("Password must be at least 6 characters")));
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text("Password must be at least 6 characters"),
+                ),
+              );
             } else {
               if (passwordController.text != reenterController.text) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("Passwords do not match")));
+                  SnackBar(content: Text("Passwords do not match")),
+                );
               } else {
                 signUp();
               }
@@ -266,10 +261,12 @@ class _SignUpFlowState extends State<SignUpFlow> {
     signupController.password.value = passwordController.text;
     var success = await signupController.signUpUser(context);
     if (success == true) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content:
-              Text("Registration Successful. Please signIn to continue.")));
-      authType.alterAuthenticationType();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Registration Successful. Please Sing In.")),
+      );
+      Navigator.of(
+        context,
+      ).pushReplacement(MaterialPageRoute(builder: (context) => SignIn()));
       setState(() {
         agree = !agree;
       });

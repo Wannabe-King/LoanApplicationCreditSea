@@ -49,7 +49,6 @@ class SignupController extends GetxController {
   }
 
   Future<bool> signUpUser(BuildContext context) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
     try {
       final response = await http.post(
         Uri.parse('https://creditseabackend-170m.onrender.com/api/auth/signup'),
@@ -62,8 +61,6 @@ class SignupController extends GetxController {
       if (response.statusCode == 201) {
         final data = jsonDecode(response.body);
         String token = data['token'];
-        prefs.setString('auth_token', token);
-        prefs.setString('phone', '+91${phoneNumber.value}');
         await _storage.write('auth_token', token);
         print('Signup successful! Token: $token');
         return true;

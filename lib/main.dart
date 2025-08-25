@@ -62,7 +62,6 @@ class _MyAppState extends State<MyApp> {
       url,
       headers: {'authorization': authToken ?? ''},
     );
-    print(response.body);
     return response.statusCode == 200;
   }
 }

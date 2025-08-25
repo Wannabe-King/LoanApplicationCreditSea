@@ -5,12 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
-enum PersonalDetailScreen {
-  name,
-  email,
-  pan,
-}
+enum PersonalDetailScreen { name, email, pan }
 
 class PersonalDetailController extends GetxController {
   var currentScreen = PersonalDetailScreen.name.obs;
@@ -43,9 +40,10 @@ class PersonalDetailController extends GetxController {
   void sendOtp(BuildContext context) {
     otp.value = generateOtp();
     showCustomDialog(
-        context: context,
-        title: "OTP Verification",
-        description: "Your OTP for number ${email.value} is ${otp.value}");
+      context: context,
+      title: "OTP Verification",
+      description: "Your OTP for number ${email.value} is ${otp.value}",
+    );
   }
 
   String generateOtp() {
@@ -55,11 +53,11 @@ class PersonalDetailController extends GetxController {
   }
 
   void verifyOtp(String enteredOTP, BuildContext context) {
-    if (enteredOTP == otp.value) {
-      switchScreen(PersonalDetailScreen.pan);
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Please enter the correct otp.")));
+    if (enteredOTP != otp.value) {
+      print(otp.value);
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text("Please enter the correct otp.")));
     }
   }
 
@@ -68,11 +66,15 @@ class PersonalDetailController extends GetxController {
   }
 
   void updateUserDetail(BuildContext context) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
     var phone = _storage.read('phone');
-    print(phone);
     var token = _storage.read('auth_token');
+    prefs.setString('auth_token', token);
+    prefs.setString('phone', '+91${phone.value}');
     print(token);
-    final url = Uri.parse('https://creditseabackend-170m.onrender.com/api/auth/update/$phone');
+    final url = Uri.parse(
+      'https://creditseabackend-170m.onrender.com/api/auth/update/$phone',
+    );
 
     try {
       final response = await http.put(
@@ -95,16 +97,17 @@ class PersonalDetailController extends GetxController {
           const SnackBar(content: Text('User details updated successfully')),
         );
       } else {
-        final errorMessage = jsonDecode(response.body)['message'] ??
+        final errorMessage =
+            jsonDecode(response.body)['message'] ??
             'Error updating user details';
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(errorMessage)),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(errorMessage)));
       }
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('An error occurred: \$e')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('An error occurred: \$e')));
     }
   }
 }
