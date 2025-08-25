@@ -9,9 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SignIn extends StatefulWidget {
-  const SignIn({
-    super.key,
-  });
+  const SignIn({super.key});
 
   @override
   State<SignIn> createState() => _SignInState();
@@ -25,65 +23,96 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
+    return _buildSignIn();
+  }
+
+  /// Build Sign In Screen
+  Widget _buildSignIn() {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        //Signin Screen
-        Text(
-          'Please enter your credentials',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        CustomInputContainer(
-          inputTitle: "Mobile Number",
-          inputWidget: CustomPhoneWidget(
-            controller: phoneController,
-            onchanged: (phone) {
-              print(phone.completeNumber);
-            },
-          ),
-        ),
-
-        CustomInputContainer(
-            inputTitle: "Enter password",
-            inputWidget: CustomInputField(
-              controller: passwordController,
-              hintText: "Enter password",
-              password: true,
-            )),
-
-        SizedBox(
-          height: 20,
-        ),
-        CustomButton(
-          buttonText: "Sign In",
-          disabled: true,
-          onTap: () {
-            signIn();
-          },
-        ),
-        GestureDetector(
-          onTap: () {
-            authType.alterAuthenticationType();
-          },
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Text(
-                "New to CreditSea? Create an account",
-                style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: ColorX.backgroundBlue),
-              ),
-            ),
-          ),
-        ),
+        _buildHeader(),
+        SizedBox(height: 10),
+        _buildPhoneInput(),
+        SizedBox(height: 10),
+        _buildPasswordInput(),
+        SizedBox(height: 20),
+        _buildSignInButton(),
+        _buildSwitchToSignUp(),
       ],
     );
   }
 
+  /// Header text
+  Widget _buildHeader() {
+    return Text(
+      'Please enter your credentials',
+      style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+    );
+  }
+
+  /// Phone input field
+  Widget _buildPhoneInput() {
+    return CustomInputContainer(
+      inputTitle: "Mobile Number",
+      inputWidget: CustomPhoneWidget(
+        controller: phoneController,
+        onchanged: (phone) {
+          signinController.phone.value = phone.completeNumber;
+        },
+      ),
+    );
+  }
+
+  /// Password input field
+  Widget _buildPasswordInput() {
+    return CustomInputContainer(
+      inputTitle: "Enter password",
+      inputWidget: CustomInputField(
+        controller: passwordController,
+        hintText: "Enter password",
+        password: true,
+        onChanged: (val) {
+          signinController.password.value = val;
+        },
+      ),
+    );
+  }
+
+  /// Sign In button
+  Widget _buildSignInButton() {
+    return CustomButton(
+      buttonText: "Sign In",
+      disabled: true, // Example: reactive state
+      onTap: () {
+        signIn();
+      },
+    );
+  }
+
+  /// Switch to Sign Up screen
+  Widget _buildSwitchToSignUp() {
+    return GestureDetector(
+      onTap: () {
+        authType.alterAuthenticationType();
+      },
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Text(
+            "New to CreditSea? Create an account",
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: ColorX.backgroundBlue,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  /// Trigger sign in
   void signIn() async {
     signinController.phone.value = phoneController.text;
     signinController.password.value = passwordController.text;
