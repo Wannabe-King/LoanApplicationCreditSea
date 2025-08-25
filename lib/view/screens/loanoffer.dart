@@ -1,9 +1,9 @@
-import 'package:creditsea_flutter_assignment/config/assets.dart';
-import 'package:creditsea_flutter_assignment/config/color.dart';
-import 'package:creditsea_flutter_assignment/controllers/loan_controller.dart';
-import 'package:creditsea_flutter_assignment/view/screens/applicationstatus.dart';
-import 'package:creditsea_flutter_assignment/view/widget/custombutton.dart';
-import 'package:creditsea_flutter_assignment/view/widget/progress_container.dart';
+import 'package:client_app/config/assets.dart';
+import 'package:client_app/config/color.dart';
+import 'package:client_app/controllers/loan_controller.dart';
+import 'package:client_app/view/screens/applicationstatus.dart';
+import 'package:client_app/view/widget/custombutton.dart';
+import 'package:client_app/view/widget/progress_container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

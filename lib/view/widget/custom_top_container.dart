@@ -1,5 +1,6 @@
-import 'package:creditsea_flutter_assignment/config/assets.dart';
-import 'package:creditsea_flutter_assignment/config/color.dart';
+
+import 'package:client_app/config/assets.dart';
+import 'package:client_app/config/color.dart';
 import 'package:flutter/material.dart';
 
 class CustomTopContainer extends StatelessWidget {

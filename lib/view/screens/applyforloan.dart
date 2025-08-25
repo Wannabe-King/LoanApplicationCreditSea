@@ -1,10 +1,10 @@
-import 'package:creditsea_flutter_assignment/config/color.dart';
-import 'package:creditsea_flutter_assignment/controllers/loan_controller.dart';
-import 'package:creditsea_flutter_assignment/view/screens/loanoffer.dart';
-import 'package:creditsea_flutter_assignment/view/widget/custom_gender_dropdown.dart';
-import 'package:creditsea_flutter_assignment/view/widget/custom_input_container.dart';
-import 'package:creditsea_flutter_assignment/view/widget/custombutton.dart';
-import 'package:creditsea_flutter_assignment/view/widget/progress_container.dart';
+import 'package:client_app/config/color.dart';
+import 'package:client_app/controllers/loan_controller.dart';
+import 'package:client_app/view/screens/loanoffer.dart';
+import 'package:client_app/view/widget/custom_gender_dropdown.dart';
+import 'package:client_app/view/widget/custom_input_container.dart';
+import 'package:client_app/view/widget/custombutton.dart';
+import 'package:client_app/view/widget/progress_container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:widgets_easier/widgets_easier.dart';

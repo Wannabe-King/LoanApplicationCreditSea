@@ -1,7 +1,7 @@
-import 'package:creditsea_flutter_assignment/config/color.dart';
-import 'package:creditsea_flutter_assignment/view/widget/custombutton.dart';
-import 'package:creditsea_flutter_assignment/view/widget/progress_container.dart';
-import 'package:creditsea_flutter_assignment/view/widget/status_tile.dart';
+import 'package:client_app/config/color.dart';
+import 'package:client_app/view/widget/custombutton.dart';
+import 'package:client_app/view/widget/progress_container.dart';
+import 'package:client_app/view/widget/status_tile.dart';
 import 'package:flutter/material.dart';
 
 class ApplicationStatus extends StatefulWidget {

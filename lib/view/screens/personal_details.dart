@@ -1,9 +1,9 @@
-import 'package:creditsea_flutter_assignment/config/color.dart';
-import 'package:creditsea_flutter_assignment/controllers/personal_detail_controller.dart';
-import 'package:creditsea_flutter_assignment/view/screens/email_verification.dart';
-import 'package:creditsea_flutter_assignment/view/screens/name_screen.dart';
-import 'package:creditsea_flutter_assignment/view/screens/pan_detail.dart';
-import 'package:creditsea_flutter_assignment/view/widget/progress_container.dart';
+import 'package:client_app/config/color.dart';
+import 'package:client_app/controllers/personal_detail_controller.dart';
+import 'package:client_app/view/screens/email_verification.dart';
+import 'package:client_app/view/screens/name_screen.dart';
+import 'package:client_app/view/screens/pan_detail.dart';
+import 'package:client_app/view/widget/progress_container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

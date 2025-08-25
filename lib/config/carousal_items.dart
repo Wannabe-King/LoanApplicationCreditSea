@@ -1,6 +1,6 @@
-import 'package:creditsea_flutter_assignment/config/assets.dart';
-import 'package:creditsea_flutter_assignment/view/widget/custom_tile.dart';
-import 'package:creditsea_flutter_assignment/view/widget/custom_top_container.dart';
+import 'package:client_app/config/assets.dart';
+import 'package:client_app/view/widget/custom_tile.dart';
+import 'package:client_app/view/widget/custom_top_container.dart';
 import 'package:flutter/material.dart';
 
 class CarousalItems {
@@ -17,22 +17,10 @@ class CarousalItems {
           crossAxisSpacing: 20.0,
           mainAxisSpacing: 20.0,
           children: [
-            CustomTile(
-              image: Assets.car,
-              size: 80,
-            ),
-            CustomTile(
-              image: Assets.bike,
-              size: 80,
-            ),
-            CustomTile(
-              image: Assets.laptop,
-              size: 80,
-            ),
-            CustomTile(
-              image: Assets.phone,
-              size: 80,
-            ),
+            CustomTile(image: Assets.car, size: 80),
+            CustomTile(image: Assets.bike, size: 80),
+            CustomTile(image: Assets.laptop, size: 80),
+            CustomTile(image: Assets.phone, size: 80),
           ],
         ),
       ),

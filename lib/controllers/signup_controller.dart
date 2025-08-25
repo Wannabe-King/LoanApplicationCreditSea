@@ -1,5 +1,5 @@
 import 'dart:math';
-import 'package:creditsea_flutter_assignment/view/widget/show_dialog.dart';
+import 'package:client_app/view/widget/show_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';

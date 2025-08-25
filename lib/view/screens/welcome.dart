@@ -1,10 +1,12 @@
+
+import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:creditsea_flutter_assignment/config/carousal_items.dart';
-import 'package:creditsea_flutter_assignment/config/color.dart';
-import 'package:creditsea_flutter_assignment/controllers/auth_controller.dart';
-import 'package:creditsea_flutter_assignment/controllers/carousal_controller.dart';
-import 'package:creditsea_flutter_assignment/view/screens/signin.dart';
-import 'package:creditsea_flutter_assignment/view/screens/signupFlow.dart';
+import 'package:client_app/config/carousal_items.dart';
+import 'package:client_app/config/color.dart';
+import 'package:client_app/controllers/auth_controller.dart';
+import 'package:client_app/controllers/carousal_controller.dart';
+import 'package:client_app/view/screens/signin.dart';
+import 'package:client_app/view/screens/signupFlow.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';

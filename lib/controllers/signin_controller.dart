@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:creditsea_flutter_assignment/view/screens/personal_details.dart';
+import 'package:client_app/view/screens/personal_details.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';

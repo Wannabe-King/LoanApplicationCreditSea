@@ -1,4 +1,5 @@
-import 'package:creditsea_flutter_assignment/view/screens/welcome.dart';
+
+import 'package:client_app/view/screens/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 

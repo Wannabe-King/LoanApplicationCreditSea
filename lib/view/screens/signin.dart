@@ -1,10 +1,10 @@
-import 'package:creditsea_flutter_assignment/config/color.dart';
-import 'package:creditsea_flutter_assignment/controllers/auth_controller.dart';
-import 'package:creditsea_flutter_assignment/controllers/signin_controller.dart';
-import 'package:creditsea_flutter_assignment/view/widget/custom_input_container.dart';
-import 'package:creditsea_flutter_assignment/view/widget/custom_input_field.dart';
-import 'package:creditsea_flutter_assignment/view/widget/custom_phone_input.dart';
-import 'package:creditsea_flutter_assignment/view/widget/custombutton.dart';
+import 'package:client_app/config/color.dart';
+import 'package:client_app/controllers/auth_controller.dart';
+import 'package:client_app/controllers/signin_controller.dart';
+import 'package:client_app/view/widget/custom_input_container.dart';
+import 'package:client_app/view/widget/custom_input_field.dart';
+import 'package:client_app/view/widget/custom_phone_input.dart';
+import 'package:client_app/view/widget/custombutton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

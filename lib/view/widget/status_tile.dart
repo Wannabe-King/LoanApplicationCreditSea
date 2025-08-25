@@ -1,4 +1,4 @@
-import 'package:creditsea_flutter_assignment/config/color.dart';
+import 'package:client_app/config/color.dart';
 import 'package:flutter/material.dart';
 
 class StatusTile extends StatelessWidget {
