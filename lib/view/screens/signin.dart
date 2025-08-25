@@ -80,7 +80,7 @@ class _SignInState extends State<SignIn> {
   Widget _buildSignInButton() {
     return CustomButton(
       buttonText: "Sign In",
-      disabled: true, // Example: reactive state
+      disabled: true,
       onTap: () {
         signIn();
       },
