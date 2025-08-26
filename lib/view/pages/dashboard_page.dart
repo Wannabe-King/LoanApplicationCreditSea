@@ -17,21 +17,11 @@ class _DashboardPageState extends State<DashboardPage> {
     LoanApplicationController(),
     permanent: true,
   );
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      controller.fetchApplications(); // ✅ safe after build
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await controller.fetchApplications();
     });
     return Scaffold(
       appBar: AppBar(
@@ -47,8 +37,10 @@ class _DashboardPageState extends State<DashboardPage> {
         ),
         actions: [
           IconButton(
-            onPressed: () {
-              controller.logout();
+            onPressed: () async {
+              await controller.logout();
+              print('logout');
+              if (!mounted) return;
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => SignInPage()),
               );

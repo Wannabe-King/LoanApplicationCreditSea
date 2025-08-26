@@ -70,8 +70,8 @@ class PersonalDetailController extends GetxController {
     var phone = _storage.read('phone');
     var token = _storage.read('auth_token');
     prefs.setString('auth_token', token);
-    prefs.setString('phone', '+91${phone.value}');
-    print(token);
+    prefs.setString('phone', phone);
+    print('QHr $phone');
     final url = Uri.parse(
       'https://creditseabackend-170m.onrender.com/api/auth/update/$phone',
     );
@@ -91,6 +91,8 @@ class PersonalDetailController extends GetxController {
           'pan': pan.value,
         }),
       );
+
+      print(response.body.toString());
 
       if (response.statusCode == 200) {
         ScaffoldMessenger.of(context).showSnackBar(

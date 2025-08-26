@@ -41,6 +41,7 @@ class LoanApplicationController extends GetxController {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('auth_token');
     final phone = prefs.getString('phone');
+    print(phone);
     final url = Uri.parse(
       'https://creditseabackend-170m.onrender.com/api/loan/user/$phone',
     );
@@ -64,8 +65,10 @@ class LoanApplicationController extends GetxController {
     isLoading.value = false;
   }
 
-  void logout() async {
+  Future<void> logout() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.remove('auth_token');
+    prefs.remove('phone');
+    print('done');
   }
 }

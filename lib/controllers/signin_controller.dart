@@ -29,6 +29,10 @@ class SigninController extends GetxController {
         final data = jsonDecode(response.body);
         String token = data['token'];
         final user = User.fromJson(data['user']);
+        prefs.setString('auth_token', token);
+        prefs.setString('phone', '+91${phone.value}');
+        await _storage.write('auth_token', token);
+        await _storage.write('phone', '+91${phone.value}');
         if (user.pan == null || user.pan == '') {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => PersonalDetail()),
@@ -36,10 +40,6 @@ class SigninController extends GetxController {
           return;
         }
 
-        prefs.setString('auth_token', token);
-        prefs.setString('phone', '+91${phone.value}');
-        await _storage.write('auth_token', token);
-        await _storage.write('phone', '+91${phone.value}');
         print('Login successful! Token: $token');
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => DashboardPage()),
