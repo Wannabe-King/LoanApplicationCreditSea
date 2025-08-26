@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoanController extends GetxController {
   var principalAmount = 0.obs;
@@ -11,21 +12,19 @@ class LoanController extends GetxController {
   var purpose = ''.obs;
   var totalAmount = 0.obs;
 
-  static final GetStorage _storage = GetStorage();
-  var token = _storage.read('auth_token');
-
   Future<void> registerLoan(BuildContext context) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('auth_token');
     totalAmount =
         principalAmount + (principalAmount.value * 0.01 * tenure.value).toInt();
-    final url = Uri.parse('https://creditseabackend-170m.onrender.com/api/loan/create');
+    final url = Uri.parse(
+      'https://creditseabackend-170m.onrender.com/api/loan/create',
+    );
 
     try {
       final response = await http.post(
         url,
-        headers: {
-          'Content-Type': 'application/json',
-          'authorization': token,
-        },
+        headers: {'Content-Type': 'application/json', 'authorization': token},
         body: jsonEncode({
           'principal': principalAmount.value,
           'tenure': tenure.value,
@@ -37,19 +36,21 @@ class LoanController extends GetxController {
       if (response.statusCode == 201) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-              content: Text('Loan application created successfully')),
+            content: Text('Loan application created successfully'),
+          ),
         );
       } else {
-        final errorMessage = jsonDecode(response.body)['message'] ??
+        final errorMessage =
+            jsonDecode(response.body)['message'] ??
             'Failed to create loan application';
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(errorMessage)),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(errorMessage)));
       }
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('An error occurred: $e')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('An error occurred: $e')));
     }
   }
 }
