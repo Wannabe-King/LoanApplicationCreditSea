@@ -161,7 +161,7 @@ class _DashboardPageState extends State<DashboardPage> {
                           ),
                         ),
                         Text(
-                          '${app.tenure} Months',
+                          '${app.tenure} Days',
                           style: TextStyle(
                             fontFamily: 'Comic Sans MS',
                             fontSize: 16,
