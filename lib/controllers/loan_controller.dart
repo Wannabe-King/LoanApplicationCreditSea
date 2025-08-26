@@ -24,7 +24,10 @@ class LoanController extends GetxController {
     try {
       final response = await http.post(
         url,
-        headers: {'Content-Type': 'application/json', 'authorization': token},
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': token ?? '',
+        },
         body: jsonEncode({
           'principal': principalAmount.value,
           'tenure': tenure.value,
